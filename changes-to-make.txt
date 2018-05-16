@@ -1,0 +1,6 @@
+* Default terminal as ubuntu default (so that solarized works well, couldn't get
+it to work well with terminator)
+
+* Make terminal colorscheme be solarized
+
+* Install gitextensions
