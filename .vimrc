@@ -8,7 +8,7 @@ set title
 function! InsertOnTerm()
     if expand('%f')[:3] == 'term'
         startinsert
-    endif 
+    endif
 endfunction
 
 " Changing between tabs with ctrl-h, etc and making it work with in vim
@@ -22,7 +22,7 @@ if has("nvim")
     tnoremap <C-l> <C-\><C-n>gt:call InsertOnTerm()<cr>
     tnoremap <M-w> <C-\><C-n>w
     command! Newterm :tabnew | term
-endif 
+endif
 
 " temporary fix until this works natively in the terminal
 set autoread
@@ -30,7 +30,7 @@ au FocusGained * :checktime
 
 " terminal
 if has("nvim")
-endif 
+endif
 
 "enable very magic
 nnoremap / /\v
@@ -232,7 +232,7 @@ endfunction!
 function! MyOnNeomakeInit()
     if MyNeomakeGoodContext(g:neomake_hook_context)
         call PrefixStatusLine()
-        set statusline+=building\ \ \ 
+        set statusline+=building\ \ \
         let g:ct=0
         call PostfixStatusLine()
     endif
@@ -243,7 +243,7 @@ function! MyOnNeomakeCountsChanged()
         let context = g:neomake_hook_context
         let g:ct = g:ct + 1
         call PrefixStatusLine()
-        set statusline+=makeprog...\ \ \ 
+        set statusline+=makeprog...\ \ \
         set statusline+=%{ToString(g:ct)}
         call PostfixStatusLine()
     endif
@@ -254,9 +254,9 @@ function! MyOnNeomakeFinished()
       let context = g:neomake_hook_context
       call PrefixStatusLine()
       if g:neomake_hook_context['jobinfo']['exit_code'] == '0'
-          set statusline+=success\ \ \ 
+          set statusline+=success\ \ \
       else
-          set statusline+=failed\ \ \ 
+          set statusline+=failed\ \ \
       endif
       call PostfixStatusLine()
     endif
@@ -302,9 +302,9 @@ function! GetGitPath(fname)
       let b += 1
       if isdirectory(p . '/.git')
           return a:fname[len(p) + 1:]
-      endif 
+      endif
       let p = fnamemodify(p, ':h')
-    endwhile 
+    endwhile
     return fnamemodify(a:fname, ':t')
 endfunction
 
