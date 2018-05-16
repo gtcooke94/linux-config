@@ -1,8 +1,6 @@
 * Default terminal as ubuntu default (so that solarized works well, couldn't get
 it to work well with terminator)
 
-* Make terminal colorscheme be solarized
-
-* Install Nerdcommentor and add keybindings for it
+* Make terminal colorscheme be solarized by default
 
 * Install gitextensions
