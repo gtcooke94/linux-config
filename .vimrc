@@ -11,6 +11,8 @@ function! InsertOnTerm()
     endif 
 endfunction
 
+" Changing between tabs with ctrl-h, etc and making it work with in vim
+" terminal
 if has("nvim")
     set guicursor=
     tnoremap <M-[> <C-\><C-n>
@@ -45,8 +47,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" tagbar
-nnoremap <localleader>t :TagbarToggle<CR>
+" tagbar - opens Tagbar and moves to the tagbar
+nnoremap <localleader>t :TagbarToggle<CR><C-w>w
 
 " deoplete
 if has("nvim")
@@ -157,6 +159,8 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '\v\.(exe|so(\.\d\.\d\.\d)?|dll|pyc)$',
 \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
 \ }
+
+"file searching, info found at ctrlpvim github repo
 nnoremap <localleader>f :CtrlP getcwd()<cr>
 
 "in case there are system specific settings

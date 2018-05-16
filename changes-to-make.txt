@@ -3,4 +3,6 @@ it to work well with terminator)
 
 * Make terminal colorscheme be solarized
 
+* Install Nerdcommentor and add keybindings
+
 * Install gitextensions
