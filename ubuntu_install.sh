@@ -4,7 +4,6 @@ sudo apt -y upgrade
 sudo apt install -y \
     curl \
     gnome-terminal \
-    terminator \
     awesome \
     zsh \
     zathura \

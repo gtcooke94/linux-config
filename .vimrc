@@ -4,6 +4,8 @@ let maplocalleader = "\\"
 let &titlestring=expand("%:t")
 set title
 
+"Change between vsplit
+nnoremap <localleader>a <C-w>w
 " see https://github.com/neovim/neovim/issues/7663
 function! InsertOnTerm()
     if expand('%f')[:3] == 'term'
