@@ -169,6 +169,12 @@ try
 catch
 endtry
 
+"NerdCommentor - Disable the default mappings of the plugin and map the
+"comment toggle to what I like
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>c <plug>NERDCommenterToggle
+vmap <leader>c <plug>NERDCommenterToggle
+
 " copied from https://stackoverflow.com/a/7238791
 set tabline=%!MyTabLine()
 
