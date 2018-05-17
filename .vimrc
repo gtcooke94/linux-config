@@ -4,8 +4,18 @@ let maplocalleader = "\\"
 let &titlestring=expand("%:t")
 set title
 
-"Change between vsplit
-nnoremap <localleader>a <C-w>w
+"Navigating between vsplit
+nnoremap gh <C-w><C-h>
+nnoremap gl <C-w><C-l>
+nnoremap gj <C-w><C-j>
+nnoremap gk <C-w><C-k>
+nnoremap <localleader>w :vsplit<CR>
+"Make one space after comments
+let NERDSpaceDelims=1
+
+"Swapping vsplits
+nnoremap gr <C-w><C-r>
+
 " see https://github.com/neovim/neovim/issues/7663
 function! InsertOnTerm()
     if expand('%f')[:3] == 'term'
@@ -49,8 +59,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" tagbar - opens Tagbar and moves to the tagbar
-nnoremap <localleader>t :TagbarToggle<CR><C-w>w
+" tagbar - opens Tagbar and Pauses it so it stays with whatever window you
+" opened it with
+nnoremap <localleader>t :TagbarToggle<CR>:TagbarTogglePause<CR>
 
 " deoplete
 if has("nvim")
