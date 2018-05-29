@@ -97,6 +97,7 @@ add_vim_repo 'https://github.com/jlanzarotta/bufexplorer.git'
 add_vim_repo 'https://github.com/lervag/vimtex'
 add_vim_repo 'https://github.com/altercation/vim-colors-solarized.git'
 add_vim_repo 'https://github.com/scrooloose/nerdcommenter.git'
+add_vim_repo 'https://github.com/vim-airline/vim-airline'
 
 cd $DIR/vimtex
 git checkout master

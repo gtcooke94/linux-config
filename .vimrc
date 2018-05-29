@@ -94,6 +94,8 @@ else
     "spell check comes out as poor highlighting
     set nospell
 endif
+call togglebg#map("<F8>")
+
 
 " neomake
 " errorformat for cppcheck copied from syntastic:
