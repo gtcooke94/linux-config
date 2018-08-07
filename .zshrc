@@ -77,10 +77,6 @@ function git_pull_dirs {
 }
 
 alias vim="nvim"
-<<<<<<< HEAD
-alias gvim="gnome-terminal -x nvim -p"
 alias gitextensions="~/GitExtensions/GitExtensions.exe &"
-=======
 alias gvim="gnome-terminal -- nvim -p"
->>>>>>> upstream/master
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
