@@ -2,6 +2,7 @@ PATCH=$PWD/patches/0001-open-tag-in-reverse_goto-when-indicated-by-switchbuf.pat
 sudo apt update
 sudo apt -y upgrade
 sudo apt install -y \
+    ccache \
     curl \
     gnome-terminal \
     awesome \
@@ -18,21 +19,22 @@ sudo apt install -y \
     cmake-curses-gui \
     libnotify-dev \
     ninja-build \
+    flake8 \
     flawfinder
 
 curl -o ~/.git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 curl -o ~/.git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
-CONFIG_DIR="~/repos/linux-config"
+CONFIG_DIR="/home/$USER/repos/linux-config"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "source $CONFIG_DIR/.bashrc" >> ~/.bashrc
 echo "PATH=$PATH:~/bin" >> ~/.bashrc
 mkdir ~/bin
-ln -s $CONFIG_DIR/glmb.sh ~/bin/glmb
-ln -s $CONFIG_DIR/cpp_static_wrapper.py ~/bin
-ln -s $CONFIG_DIR/cmd_monitor.py ~/bin/cmd_monitor
+ln -v -s $CONFIG_DIR/glmb.sh /home/$USER/bin/glmb
+ln -v -s $CONFIG_DIR/cpp_static_wrapper.py /home/$USER/bin
+ln -v -s $CONFIG_DIR/cmd_monitor.py /home/$USER/bin/cmd_monitor
 
 echo "export ZSH=~/.oh-my-zsh" >> ~/.zshrc
 echo "source $CONFIG_DIR/.zshrc" >> ~/.zshrc
@@ -122,7 +124,6 @@ cd ..
 mkdir build 
 cd build && cmake .. -G Ninja -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_BUILD_TYPE=Release && ninja &&  sudo ninja install
 
-
 mkdir -p ~/.config/nvim
 echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
@@ -135,7 +136,7 @@ cd ~/repos
 git clone https://github.com/danmar/cppcheck
 cd cppcheck
 git pull
-make SRCDIR=build CFGDIR=/usr/local/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function -march=native"
+make -j $(($(nproc --all) - 1)) SRCDIR=build CFGDIR=/usr/local/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function -march=native"
 sudo install cppcheck /usr/local/bin
 sudo mkdir /usr/local/share/cppcheck/cfg -p
 sudo install -D ./cfg/* /usr/local/share/cppcheck/cfg
@@ -154,3 +155,14 @@ sed -i "s/#\(c.TerminalInteractiveShell.editing_mode = \)'emacs'/\1 'vi'/" ~/.ip
 cd ~/repos/vim/lvdb/python
 sudo python setup.py develop
 sudo python3 setup.py develop
+
+#see here: http://travisjeffery.com/b/2012/02/search-a-git-repo-like-a-ninja
+git config --global alias.unstage 'reset HEAD --'
+git config --global --replace-all core.pager "less -F -X"
+git config --global grep.extendRegexp true
+git config --global grep.lineNumber true
+git config --global alias.g "grep --break --heading --line-number"
+git config --global core.editor nvim
+git config --global merge.tool nvimdiff
+git config --global color.ui true
+git config --global core.whitespace trailing-space, space-before-tab

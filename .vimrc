@@ -15,6 +15,9 @@ let NERDSpaceDelims=1
 
 "Swapping vsplits
 nnoremap gr <C-w><C-r>
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
+let g:echodoc#enable_force_overwrite = 1
 
 " see https://github.com/neovim/neovim/issues/7663
 function! InsertOnTerm()
@@ -34,7 +37,8 @@ if has("nvim")
     tnoremap <C-l> <C-\><C-n>gt:call InsertOnTerm()<cr>
     tnoremap <M-w> <C-\><C-n>w
     command! Newterm :tabnew | term
-endif
+    set scrollback=50000
+endif 
 
 " temporary fix until this works natively in the terminal
 set autoread
@@ -100,6 +104,14 @@ call togglebg#map("<F8>")
 " neomake
 " errorformat for cppcheck copied from syntastic:
 "   https://github.com/vim-syntastic/syntastic/blob/master/syntax_checkers/c/cppcheck.vim
+augroup my_neomake_signs
+    au!
+    autocmd ColorScheme *
+        \ hi NeomakeErrorSign ctermfg=red ctermbg=black |
+        \ hi NeomakeWarningSign ctermfg=yellow ctermbg=black |
+        \ hi NeomakeWarning ctermbg=darkblue
+augroup END
+
 nnoremap <leader>c :cnext<CR>
 nnoremap <leader>L :lnext<CR>
 let g:neomake_tex_enabled_makers=[]
@@ -117,7 +129,7 @@ let g:neomake_cpp_cppclean_maker={
         \ }
 
 let g:neomake_python_pylint_maker={
-    \ 'exe': 'pylint',
+    \ 'exe': 'pylint3',
     \ 'args': [
         \ '--rcfile=~/repos/linux-config/.pylintrc',
         \ '--output-format=text',
@@ -130,7 +142,7 @@ let g:neomake_python_pylint_maker={
         \ '%A%f:(%l): %m,' .
         \ '%-Z%p^%.%#,' .
         \ '%-G%.%#',
-    \ 'output_stream': 'stdout',
+    \ 'output_stream': 'both',
     \ 'postprocess': [
     \   function('neomake#postprocess#generic_length'),
     \   function('neomake#makers#ft#python#PylintEntryProcess'),
@@ -365,11 +377,31 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
 \}
+
+let g:vimtex_quickfix_latexlog = {
+      \ 'default' : 1,
+      \ 'general' : 1,
+      \ 'references' : 1,
+      \ 'overfull' : 1,
+      \ 'underfull' : 0,
+      \ 'font' : 1,
+      \ 'packages' : {
+      \   'default' : 1,
+      \   'natbib' : 1,
+      \   'biblatex' : 1,
+      \   'babel' : 1,
+      \   'hyperref' : 0,
+      \   'scrreprt' : 1,
+      \   'fixltx2e' : 1,
+      \   'titlesec' : 1,
+      \ },
+\}
+
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 let g:tex_flavor = 'latex'
-let g:vimtex_quickfix_open_on_warning=0
+let g:vimtex_quickfix_open_on_warning=1
 let g:vimtex_fold_enabled=1
 au! BufRead * normal zR
