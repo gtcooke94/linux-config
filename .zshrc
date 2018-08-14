@@ -79,4 +79,13 @@ function git_pull_dirs {
 alias vim="nvim"
 alias gitextensions="~/GitExtensions/GitExtensions.exe &"
 alias gvim="gnome-terminal -- nvim -p"
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+# export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+      export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
+  else
+      export VISUAL="nvim"
+fi
+alias v="$VISUAL"
+
+
