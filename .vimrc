@@ -189,6 +189,8 @@ let g:ctrlp_custom_ignore = {
 
 "file searching, info found at ctrlpvim github repo
 nnoremap <localleader>f :CtrlP getcwd()<cr>
+let g:ctrlp_working_path_mode='w'
+let g:ctrlp_show_hidden = 1
 
 "in case there are system specific settings
 try

@@ -78,14 +78,16 @@ function git_pull_dirs {
 
 alias vim="nvim"
 alias gitextensions="~/GitExtensions/GitExtensions.exe &"
-alias gvim="gnome-terminal -- nvim -p"
+#alias gvim='gnome-terminal -- nvim -p -cc "cd `pwd`"' 
+alias gvim='gnome-terminal -- nvim -c "cd `pwd`"' 
 # export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
+# Make v start a new tab with nvim
+# Make gvim start a new terminal with nvim
+# Both will make the working directory the current directory
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-      export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
+    export VISUAL='nvr -cc "cd `pwd`" -cc tabedit --remote-wait +"set bufhidden=wipe"'
   else
       export VISUAL="nvim"
 fi
 alias v="$VISUAL"
-
-
