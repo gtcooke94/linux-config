@@ -108,8 +108,7 @@ augroup my_neomake_signs
     au!
     autocmd ColorScheme *
         \ hi NeomakeErrorSign ctermfg=red ctermbg=black |
-        \ hi NeomakeWarningSign ctermfg=yellow ctermbg=black |
-        \ hi NeomakeWarning ctermbg=darkblue
+        \ hi NeomakeWarningSign ctermfg=yellow ctermbg=black
 augroup END
 
 nnoremap <leader>c :cnext<CR>
