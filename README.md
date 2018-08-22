@@ -39,7 +39,13 @@ Manual steps:
         awful.layout.suit.magnifier
     }
     
-    terminal = "terminator -x nvim -c term -c \"normal A\""
+    terminal = "x-terminal-emulator -x nvim -c term -c \"normal A\""
+    ```
+* Go into profile preferences in terminal and add the following as a custom
+  command to run instead of the shell
+
+    ```
+    nvim -c term -c "normal A"
     ```
 
 * see ``notes/.gdbinit`` for an init file. You can run gdb linked to vim
