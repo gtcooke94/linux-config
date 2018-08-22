@@ -32,9 +32,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo "source $CONFIG_DIR/.bashrc" >> ~/.bashrc
 echo "PATH=$PATH:~/bin" >> ~/.bashrc
 mkdir ~/bin
-ln -v -s $CONFIG_DIR/glmb.sh /home/$USER/bin/glmb
-ln -v -s $CONFIG_DIR/cpp_static_wrapper.py /home/$USER/bin
-ln -v -s $CONFIG_DIR/cmd_monitor.py /home/$USER/bin/cmd_monitor
+
+# TODO These aren't working
+ln -v -s $CONFIG_DIR/glmb.sh /home/$USER/bin/
+ln -v -s $CONFIG_DIR/cpp_static_wrapper.py /home/$USER/bin/
+ln -v -s $CONFIG_DIR/cmd_monitor.py /home/$USER/bin/
 
 echo "export ZSH=~/.oh-my-zsh" >> ~/.zshrc
 echo "source $CONFIG_DIR/.zshrc" >> ~/.zshrc
