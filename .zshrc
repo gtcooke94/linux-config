@@ -91,3 +91,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
       export VISUAL="nvim"
 fi
 alias v="$VISUAL"
+
+# screenshot to clipboard alias
+alias scrotclip= 'scrot -s ~/foo.png && xclip ~/foo.png && rm ~/foo.png'
